@@ -6,10 +6,6 @@ public class Game {
     private GameState gameState = new GameStartState();
     private CarGroup carGroup;
 
-    public GameState getState() {
-        return new GameStartState();
-    }
-
     public void play() {
         System.out.println(this.gameState.getView().getMessage());
         String input = Console.readLine();
@@ -30,5 +26,13 @@ public class Game {
 
     public CarGroup getCarGroup() {
         return this.carGroup;
+    }
+
+    public GameState getGameState() {
+        return this.gameState;
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 }

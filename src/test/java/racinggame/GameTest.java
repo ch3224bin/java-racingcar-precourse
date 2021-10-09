@@ -11,6 +11,6 @@ public class GameTest {
     @Test
     void testStart() {
         Game game = new Game();
-        assertThat(game.getState()).isInstanceOf(GameStartState.class);
+        assertThat(game.getGameState()).isInstanceOf(GameStartState.class);
     }
 }
