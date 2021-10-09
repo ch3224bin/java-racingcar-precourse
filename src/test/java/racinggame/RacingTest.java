@@ -44,4 +44,18 @@ public class RacingTest {
             }
         }
     }
+
+    @Test
+    void testRoundFinish() {
+        int round = 5;
+        Racing racing = Racing.create(carGroup, round);
+        RoundResult roundResult = null;
+        for (int i = 0; i < round; i++) {
+            roundResult = racing.play();
+            if (i < round - 1) {
+                assertThat(roundResult.isRoundOver()).isFalse();
+            }
+        }
+        assertThat(roundResult.isRoundOver()).isTrue();
+    }
 }

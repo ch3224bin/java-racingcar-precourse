@@ -1,7 +1,7 @@
 package racinggame;
 
 public class Round {
-    private final int value;
+    private int value;
 
     public Round(int value) {
         this.value = value;
@@ -13,5 +13,9 @@ public class Round {
 
     public boolean isFinish() {
         return this.value == 0;
+    }
+
+    public void decrease() {
+        this.value--;
     }
 }

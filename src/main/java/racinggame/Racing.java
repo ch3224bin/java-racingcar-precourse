@@ -22,6 +22,7 @@ public class Racing {
     }
 
     public RoundResult play() {
+        this.round.decrease();
         this.carGroup.injectEnergy();
         return new RoundResult(this.carGroup.getCars(), this.round);
     }
