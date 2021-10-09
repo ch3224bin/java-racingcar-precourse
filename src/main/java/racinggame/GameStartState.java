@@ -1,5 +1,7 @@
 package racinggame;
 
+import java.util.function.Supplier;
+
 public class GameStartState extends GameState {
     @Override
     public View getView() {
@@ -7,9 +9,10 @@ public class GameStartState extends GameState {
     }
 
     @Override
-    public void run(String input, Game game) {
-        String[] carNames = input.split(",");
+    public ResultView run(Supplier<String> readLine, Game game) {
+        String[] carNames = readLine.get().split(",");
         game.setCarGroup(CarGroup.create(carNames));
+        return null;
     }
 
     @Override

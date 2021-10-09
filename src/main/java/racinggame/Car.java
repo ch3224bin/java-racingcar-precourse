@@ -10,6 +10,11 @@ public class Car {
         this.distance = new Distance();
     }
 
+    public Car(CarName name, Distance distance) {
+        this.name = name;
+        this.distance = distance;
+    }
+
     public String getName() {
         return this.name.value();
     }
@@ -22,5 +27,9 @@ public class Car {
 
     public int getDistance() {
         return this.distance.value();
+    }
+
+    public Car copy() {
+        return new Car(this.name, this.distance.copy());
     }
 }

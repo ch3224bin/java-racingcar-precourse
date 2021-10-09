@@ -4,13 +4,9 @@ public class Racing {
     private final CarGroup carGroup;
     private final Round round;
 
-    public Racing(CarGroup carGroup, int round) {
+    public Racing(CarGroup carGroup, Round round) {
         this.carGroup = carGroup;
-        this.round = new Round(round);
-    }
-
-    public static Racing create(CarGroup carGroup, int round) {
-        return new Racing(carGroup, round);
+        this.round = round;
     }
 
     public int getJoinedCarSize() {
@@ -24,6 +20,10 @@ public class Racing {
     public RoundResult play() {
         this.round.decrease();
         this.carGroup.injectEnergy();
-        return new RoundResult(this.carGroup.getCars(), this.round);
+        return new RoundResult(this.carGroup.getCars());
+    }
+
+    public boolean isFinish() {
+        return this.round.isFinish();
     }
 }

@@ -1,5 +1,7 @@
 package racinggame;
 
+import java.util.function.Supplier;
+
 public class GameInputRoundState extends GameState {
     @Override
     public View getView() {
@@ -7,12 +9,14 @@ public class GameInputRoundState extends GameState {
     }
 
     @Override
-    public void run(String input, Game game) {
+    public ResultView run(Supplier<String> readLine, Game game) {
+        String input = readLine.get();
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException();
         }
-
         game.setRound(new Round(Integer.parseInt(input)));
+        game.setRacing(new Racing(game.getCarGroup(), game.getRound()));
+        return null;
     }
 
     @Override

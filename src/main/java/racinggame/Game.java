@@ -2,24 +2,34 @@ package racinggame;
 
 import nextstep.utils.Console;
 
+import javax.xml.transform.Result;
+import java.util.function.Supplier;
+
 public class Game {
     private GameState gameState = new GameStartState();
     private CarGroup carGroup;
     private Round round;
+    private Racing racing;
 
     public void play() {
         while (isNotFinish()) {
             System.out.println(this.gameState.getView().getMessage());
-            String input = Console.readLine();
-            processGame(input);
+            processGame(Console::readLine);
         }
     }
 
-    private void processGame(String input) {
+    private void processGame(Supplier<String> readLine) {
         try {
-            this.gameState.process(input, this);
-        } catch (Exception e) {
-            System.out.println("[ERROR]");
+            ResultView resultView = this.gameState.process(readLine, this);
+            printResultView(resultView);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]" + e.getMessage());
+        }
+    }
+
+    private void printResultView(ResultView resultView) {
+        if (resultView != null) {
+            System.out.println(resultView.getMessage());
         }
     }
 
@@ -49,5 +59,13 @@ public class Game {
 
     public Round getRound() {
         return this.round;
+    }
+
+    public Racing getRacing() {
+        return racing;
+    }
+
+    public void setRacing(Racing racing) {
+        this.racing = racing;
     }
 }

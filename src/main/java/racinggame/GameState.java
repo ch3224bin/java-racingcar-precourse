@@ -1,11 +1,14 @@
 package racinggame;
 
+import java.util.function.Supplier;
+
 public abstract class GameState {
-    public void process(String input, Game game) {
-        run(input, game);
+    public ResultView process(Supplier<String> readLine, Game game) {
+        ResultView resultView = run(readLine, game);
         game.setGameState(getNextState());
+        return resultView;
     }
     abstract View getView();
-    abstract void run(String input, Game game);
+    abstract ResultView run(Supplier<String> readLine, Game game);
     abstract GameState getNextState();
 }

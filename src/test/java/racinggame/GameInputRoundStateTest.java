@@ -18,13 +18,13 @@ public class GameInputRoundStateTest {
 
     @Test
     void testInputRound() {
-        game.getGameState().process("5", game);
+        game.getGameState().process(() -> "5", game);
         assertThat(game.getRound().value()).isEqualTo(5);
     }
 
     @Test
     void testValidation() {
-        assertThatThrownBy(() -> game.getGameState().process("a", game))
+        assertThatThrownBy(() -> game.getGameState().process(() -> "a", game))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -37,7 +37,7 @@ public class GameInputRoundStateTest {
     @DisplayName("라운드 횟수를 입력하면 다음 스테이터스로 이동한다")
     @Test
     void testNextStep() {
-        game.getGameState().process("5", game);
+        game.getGameState().process(() -> "5", game);
         assertThat(game.getGameState()).isInstanceOf(GameRacingState.class);
     }
 }

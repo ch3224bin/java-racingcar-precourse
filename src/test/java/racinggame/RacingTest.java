@@ -21,7 +21,7 @@ public class RacingTest {
 
     @Test
     void testCreateRacing() {
-        Racing racing = Racing.create(carGroup, 5);
+        Racing racing = new Racing(carGroup, new Round(5));
         assertThat(racing.getJoinedCarSize()).isEqualTo(carGroup.size());
         assertThat(racing.getRemainRound()).isEqualTo(5);
     }
@@ -30,7 +30,7 @@ public class RacingTest {
     @Test
     void testInectEnergyEachRound() {
         int round = 20;
-        Racing racing = Racing.create(carGroup, round);
+        Racing racing = new Racing(carGroup, new Round(round));
         // 20회 동안 가다 서다를 반복한다
         for (int i = 0, distance = 0; i < round; i++) {
             int energy = i % 2 == 0 ? 4 : 3;
@@ -48,14 +48,13 @@ public class RacingTest {
     @Test
     void testRoundFinish() {
         int round = 5;
-        Racing racing = Racing.create(carGroup, round);
-        RoundResult roundResult = null;
+        Racing racing = new Racing(carGroup, new Round(round));
         for (int i = 0; i < round; i++) {
-            roundResult = racing.play();
+            racing.play();
             if (i < round - 1) {
-                assertThat(roundResult.isRoundOver()).isFalse();
+                assertThat(racing.isFinish()).isFalse();
             }
         }
-        assertThat(roundResult.isRoundOver()).isTrue();
+        assertThat(racing.isFinish()).isTrue();
     }
 }
