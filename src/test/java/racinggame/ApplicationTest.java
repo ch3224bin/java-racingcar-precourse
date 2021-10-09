@@ -42,6 +42,24 @@ public class ApplicationTest extends NSTest {
         });
     }
 
+    @DisplayName("시도할 횟수를 묻는다")
+    @Test
+    void testInputRound() {
+        assertSimpleTest(() -> {
+            runNoLineFound("123,456");
+            verify("시도할 회수는 몇회인가요?");
+        });
+    }
+
+    @DisplayName("시도할 횟수 입력에 대한 예외 처리")
+    @Test
+    void testValidateRound() {
+        assertSimpleTest(() -> {
+            runNoLineFound("pobi,javaji", "a");
+            verify(ERROR_MESSAGE);
+        });
+    }
+
     @AfterEach
     void tearDown() {
         outputStandard();

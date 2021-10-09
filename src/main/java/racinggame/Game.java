@@ -5,11 +5,14 @@ import nextstep.utils.Console;
 public class Game {
     private GameState gameState = new GameStartState();
     private CarGroup carGroup;
+    private Round round;
 
     public void play() {
-        System.out.println(this.gameState.getView().getMessage());
-        String input = Console.readLine();
-        processGame(input);
+        while (isNotFinish()) {
+            System.out.println(this.gameState.getView().getMessage());
+            String input = Console.readLine();
+            processGame(input);
+        }
     }
 
     private void processGame(String input) {
@@ -18,6 +21,10 @@ public class Game {
         } catch (Exception e) {
             System.out.println("[ERROR]");
         }
+    }
+
+    private boolean isNotFinish() {
+        return round == null || !round.isFinish();
     }
 
     public void setCarGroup(CarGroup carGroup) {
@@ -34,5 +41,13 @@ public class Game {
 
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
+    }
+
+    public void setRound(Round round) {
+        this.round = round;
+    }
+
+    public Round getRound() {
+        return this.round;
     }
 }
