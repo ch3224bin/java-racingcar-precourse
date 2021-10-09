@@ -3,6 +3,7 @@ package racinggame;
 import nextstep.test.NSTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ApplicationTest extends NSTest {
@@ -31,6 +32,17 @@ public class ApplicationTest extends NSTest {
             verify(ERROR_MESSAGE);
         });
     }
+
+    @DisplayName("게임 시작시 경주할 자동차의 이름을 묻는다")
+    @Test
+    void testStart() {
+        assertSimpleTest(() -> {
+            run();
+            verify("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
+        });
+    }
+
+
 
     @AfterEach
     void tearDown() {
