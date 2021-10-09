@@ -17,6 +17,6 @@ public class GameInputRoundState extends GameState {
 
     @Override
     GameState getNextState() {
-        return null;
+        return new GameRacingState();
     }
 }
