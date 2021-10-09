@@ -27,4 +27,14 @@ public class CarGroup {
         }
         return result;
     }
+
+    public List<Car> getCars() {
+        return this.cars;
+    }
+
+    public void injectEnergy() {
+        for (Car car : cars) {
+            car.inject(EnergyGenerator.createEnergy());
+        }
+    }
 }

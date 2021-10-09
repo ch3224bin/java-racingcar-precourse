@@ -20,4 +20,9 @@ public class Racing {
     public int getRemainRound() {
         return this.round.value();
     }
+
+    public RoundResult play() {
+        this.carGroup.injectEnergy();
+        return new RoundResult(this.carGroup.getCars(), this.round);
+    }
 }
