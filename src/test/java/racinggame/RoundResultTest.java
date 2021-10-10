@@ -14,4 +14,14 @@ public class RoundResultTest {
         RoundResult roundResult = new RoundResult(cars);
         assertThat(roundResult.getCars()).hasSize(cars.size()).containsAll(cars);
     }
+
+    @Test
+    void testGetWinner() {
+        List<Car> cars = Arrays.asList(new Car(new CarName("1"), new Distance(1)),
+                new Car(new CarName("2"), new Distance(0)),
+                new Car(new CarName("3"), new Distance(0)),
+                new Car(new CarName("4"), new Distance(1)));
+        RoundResult roundResult = new RoundResult(cars);
+        assertThat(roundResult.getWinners()).containsAll(Arrays.asList("1", "4"));
+    }
 }
