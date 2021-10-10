@@ -31,7 +31,7 @@ public class GameRacingStateTest {
                     .thenReturn(4, 3, 4, 4, 4, 4);
             ResultView resultView = game.getGameState().process(() -> "", game);
             assertThat(game.getRacing().isFinish()).isTrue();
-            assertThat(resultView.getMessage()).isEqualTo("123 : -\n456 : \n789 : -\n\n123 : --\n456 : -\n789 : --\n");
+            assertThat(resultView.getMessage()).isEqualTo("123 : -\n456 : \n789 : -\n\n123 : --\n456 : -\n789 : --\n\n최종 우승자는 123,789 입니다.");
         }
     }
 }

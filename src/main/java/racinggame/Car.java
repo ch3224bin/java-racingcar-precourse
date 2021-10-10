@@ -6,8 +6,7 @@ public class Car {
     private final Distance distance;
 
     public Car(String name) {
-        this.name = CarNameGenerator.createCarName(name, new CarNameValidationPolicy(CAR_NAME_MAX_LENGTH));
-        this.distance = new Distance();
+        this(CarNameGenerator.createCarName(name, new CarNameValidationPolicy(CAR_NAME_MAX_LENGTH)), new Distance());
     }
 
     public Car(CarName name, Distance distance) {

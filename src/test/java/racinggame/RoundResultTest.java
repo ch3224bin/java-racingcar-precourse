@@ -12,7 +12,10 @@ public class RoundResultTest {
     void testCreteRoundResult() {
         List<Car> cars = Arrays.asList(new Car("1"), new Car("2"), new Car("3"), new Car("4"));
         RoundResult roundResult = new RoundResult(cars);
-        assertThat(roundResult.getCars()).hasSize(cars.size()).containsAll(cars);
+        assertThat(roundResult.getCars()).hasSize(cars.size());
+        for (int i = 0, n = cars.size(); i < n; i++) {
+            assertThat(roundResult.getCars().get(i).getName()).isEqualTo(cars.get(i).getName());
+        }
     }
 
     @Test
