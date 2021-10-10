@@ -2,7 +2,6 @@ package racinggame;
 
 import nextstep.utils.Console;
 
-import javax.xml.transform.Result;
 import java.util.function.Supplier;
 
 public class Game {
@@ -13,9 +12,13 @@ public class Game {
 
     public void play() {
         while (isNotFinish()) {
-            System.out.println(this.gameState.getView().getMessage());
+            printView(this.gameState.getView());
             processGame(Console::readLine);
         }
+    }
+
+    private void printView(View view) {
+        System.out.println(view.getMessage());
     }
 
     private void processGame(Supplier<String> readLine) {
@@ -23,7 +26,7 @@ public class Game {
             ResultView resultView = this.gameState.process(readLine, this);
             printResultView(resultView);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
         }
     }
 

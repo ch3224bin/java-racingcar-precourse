@@ -4,11 +4,11 @@ import java.util.List;
 
 public class ResultView {
     private final View view;
-    private final List<RoundResult> roundResults;
+    private final RoundResults roundResults;
 
    public ResultView(View view, List<RoundResult> roundResults) {
         this.view = view;
-        this.roundResults = roundResults;
+        this.roundResults = new RoundResults(roundResults);
     }
 
     public String getMessage() {
